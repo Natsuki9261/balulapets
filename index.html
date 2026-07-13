@@ -37,7 +37,8 @@
         }
 
         header {
-           background: linear-gradient(135deg, rgba(141, 227, 217, 0.85), rgba(255, 159, 28, 0.7)), url('vete.jpg') center/cover;
+            /* CORRECCIÓN: Se cambió 'vete.jpg' por 'veterionario/vete.jpg' para encontrar la imagen de fondo */
+            background: linear-gradient(135deg, rgba(141, 227, 217, 0.85), rgba(255, 159, 28, 0.7)), url('veterionario/vete.jpg') center/cover;
             color: white;
             text-align: center;
             padding: 110px 20px 130px 20px;
@@ -467,18 +468,17 @@
         <h2>Promociones y Novedades</h2>
         <p>¡Desliza para conocer nuestros últimos descuentos y servicios exclusivos!</p>
         
-        <!-- CORRECCIÓN: Se añadió el contenedor correcto del carrusel -->
         <div class="carousel-container">
             <div class="carousel-track" id="carouselTrack">
-                <!-- Promo 1: Baño (con eñe) -->
+                <!-- CORRECCIÓN: Se cambió 'veterinaria/' por 'veterionario/' -->
                 <div class="carousel-slide">
-                    <img src="veterinaria/bano.jpg" alt="Semana de Baños">
+                    <img src="veterionario/bano.jpg" alt="Semana de Baños">
                 </div>
-                <!-- Promo 2: Primer bano (sin eñe) -->
+                <!-- CORRECCIÓN: Se cambió 'veterinaria/' por 'veterionario/' -->
                 <div class="carousel-slide">
-                    <img src="veterinaria/primerbano.jpg" alt="Primer Baño de Cachorro">
+                    <img src="veterionario/primerbano.jpg" alt="Primer Baño de Cachorro">
                 </div>
-                <!-- Promo 3 -->
+                <!-- Promo 3: Imagen remota de internet -->
                 <div class="carousel-slide">
                     <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=80&w=600" alt="Vacunas">
                 </div>
