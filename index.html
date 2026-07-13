@@ -436,7 +436,7 @@
     <section id="nosotros">
         <h2>Conócenos</h2>
         <div class="info-card">
-            <p class="about-text">En <strong>BalulaPets</strong> nos apasiona el bienestar de tus mejores amigos. Somos especialistas en el cuidado, baño y corte de pelo para perritos y gatitos. Nos caracteriza un trato cariñoso, atento y 100% profesional para que tu mascota se sienta feliz y consentida en cada visita.</p>
+            <p class="about-text">En <strong>BalulaPets</strong> nos apasiona el bienestar de tus mejores amigos. Somos especialistas en el cuidado, baño y corte de pelo para perritos y gatitos. Nos caracteriza un trato cariñoso, atento y 100% profesional para que tu mascota se sientan feliz y consentida en cada visita.</p>
             
             <ul class="info-list">
                 <li>
@@ -458,29 +458,31 @@
         </div>
     </section>
 
-   <!-- Calendly inline widget begin -->
-<div class="calendly-inline-widget" data-url="https://calendly.com/veterinariabalulapets/30min" style="min-width:320px;height:700px;"></div>
-<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-<!-- Calendly inline widget end -->
+    <!-- Calendly inline widget begin -->
+    <div class="calendly-inline-widget" data-url="https://calendly.com/veterinariabalulapets/30min" style="min-width:320px;height:700px;"></div>
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    <!-- Calendly inline widget end -->
 
     <section id="promociones">
         <h2>Promociones y Novedades</h2>
         <p>¡Desliza para conocer nuestros últimos descuentos y servicios exclusivos!</p>
         
-      <div class="carousel-track" id="carouselTrack">
-    <!-- Promo 1: Apunta a la carpeta y lleva eñe porque así está en GitHub -->
-    <div class="carousel-slide">
-        <img src="veterinaria/baño.jpg" alt="Semana de Baños">
-    </div>
-    <!-- Promo 2: Apunta a la carpeta y va sin eñe (bano) como en tu captura -->
-    <div class="carousel-slide">
-        <img src="veterinaria/primerbano.jpg" alt="Primer Baño de Cachorro">
-    </div>
-    <!-- Promo 3 -->
-    <div class="carousel-slide">
-        <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=80&w=600" alt="Vacunas">
-    </div>
-</div>
+        <!-- CORRECCIÓN: Se añadió el contenedor correcto del carrusel -->
+        <div class="carousel-container">
+            <div class="carousel-track" id="carouselTrack">
+                <!-- Promo 1: Baño (con eñe) -->
+                <div class="carousel-slide">
+                    <img src="veterinaria/baño.jpg" alt="Semana de Baños">
+                </div>
+                <!-- Promo 2: Primer bano (sin eñe) -->
+                <div class="carousel-slide">
+                    <img src="veterinaria/primerbano.jpg" alt="Primer Baño de Cachorro">
+                </div>
+                <!-- Promo 3 -->
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=80&w=600" alt="Vacunas">
+                </div>
+            </div>
 
             <button class="carousel-arrow prev" onclick="moveSlide(-1)">&#10094;</button>
             <button class="carousel-arrow next" onclick="moveSlide(1)">&#10095;</button>
