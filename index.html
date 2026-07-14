@@ -3,590 +3,732 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BalulaPets | Estética Veterinaria y Peluquería Canina</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>BalulaPets | Peluquería y Estética Canina — Coyoacán</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #8de3d9;
-            --primary-dark: #4fa89e;
-            --secondary: #FF9F1C;
-            --bg-body: #FFF3DD;
-            --dark: #2c3e50;
-            --light: #ffffff;
-            --text-muted: #627577;
+            --paper: #FFF8EC;
+            --paper-dim: #FBEFDA;
+            --ink: #26261F;
+            --magenta: #E8447A;
+            --marigold: #F3A323;
+            --turquoise: #0F93A0;
+            --leaf: #4C8C4A;
+            --violet: #6B3FA0;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            background-color: var(--bg-body);
-            color: var(--dark);
-            font-family: 'Quicksand', sans-serif;
-            line-height: 1.8;
-            padding-bottom: 120px;
+            background-color: var(--paper);
+            background-image:
+                radial-gradient(rgba(38,38,31,0.05) 1px, transparent 1px);
+            background-size: 18px 18px;
+            color: var(--ink);
+            font-family: 'Nunito', sans-serif;
+            line-height: 1.7;
+            padding-bottom: 130px;
+            overflow-x: hidden;
         }
 
-        strong {
-            font-weight: 700;
-            color: var(--primary-dark);
+        h1, h2, h3, .display {
+            font-family: 'Fredoka', sans-serif;
         }
-        
+
+        a { color: inherit; }
+        strong { color: var(--magenta); }
+
+        .eyebrow {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
+            font-size: 0.78rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--turquoise);
+        }
+
+        /* ---------------- Reveal ---------------- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(26px);
+            transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+        }
+        .reveal.is-visible { opacity: 1; transform: translateY(0); }
+        .reveal-stagger.is-visible > * { animation: staggerUp 0.6s cubic-bezier(0.16,1,0.3,1) both; }
+        .reveal-stagger.is-visible > *:nth-child(1) { animation-delay: .04s; }
+        .reveal-stagger.is-visible > *:nth-child(2) { animation-delay: .14s; }
+        .reveal-stagger.is-visible > *:nth-child(3) { animation-delay: .24s; }
+        @keyframes staggerUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
+
+        /* ---------------- Garland (signature element) ---------------- */
+        .garland {
+            display: flex;
+            justify-content: center;
+            flex-wrap: nowrap;
+            padding: 14px 0 0;
+            overflow: hidden;
+            background: var(--ink);
+        }
+        .garland-row {
+            display: flex;
+            gap: 4px;
+        }
+        .flag {
+            width: 46px;
+            height: 58px;
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 10px;
+            font-size: 1.05rem;
+            transform-origin: top center;
+            animation: sway 3.6s ease-in-out infinite;
+            flex-shrink: 0;
+        }
+        .flag:nth-child(6n+1) { background: var(--magenta); }
+        .flag:nth-child(6n+2) { background: var(--marigold); }
+        .flag:nth-child(6n+3) { background: var(--turquoise); }
+        .flag:nth-child(6n+4) { background: var(--leaf); }
+        .flag:nth-child(6n+5) { background: var(--violet); }
+        .flag:nth-child(6n+6) { background: var(--magenta); }
+        .flag:nth-child(even) { animation-delay: 0.4s; animation-direction: reverse; }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(-4deg); }
+            50% { transform: rotate(4deg); }
+        }
+
+        /* ---------------- Header ---------------- */
         header {
-            background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('veterinaria/vete.jpg') center/cover no-repeat;
-            color: white;
+            background: var(--ink);
+            color: var(--paper);
             text-align: center;
-            padding: 110px 20px 130px 20px;
-            border-bottom-left-radius: 80px 40px;
-            border-bottom-right-radius: 40px 80px;
-            box-shadow: 0 10px 30px rgba(224, 166, 76, 0.2);
+            padding: 30px 20px 70px;
             position: relative;
         }
 
-        .rating-badge {
-            background-color: var(--light);
-            color: var(--dark);
-            display: inline-flex;
+        .stamp-badge {
+            width: 118px;
+            height: 118px;
+            border-radius: 50%;
+            border: 3px dashed var(--marigold);
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 8px;
-            padding: 8px 22px;
-            border-radius: 30px;
-            font-weight: 700;
-            margin-bottom: 25px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-            font-size: 0.9rem;
+            justify-content: center;
+            margin: 10px auto 28px;
+            color: var(--marigold);
+            font-weight: 800;
+            font-family: 'Fredoka', sans-serif;
+            transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+            animation: stampIn 0.7s cubic-bezier(0.34,1.56,0.64,1) both;
         }
-        
-        .rating-badge span {
-            color: #ffb800;
-            font-size: 1.2rem;
-            line-height: 1;
+        .stamp-badge:hover { transform: rotate(-8deg) scale(1.06); }
+        .stamp-badge .num { font-size: 1.9rem; line-height: 1; }
+        .stamp-badge .stars { font-size: 0.85rem; letter-spacing: 1px; margin: 2px 0; }
+        .stamp-badge .cap { font-size: 0.56rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0.85; }
+
+        @keyframes stampIn {
+            from { opacity: 0; transform: scale(0.5) rotate(-25deg); }
+            to   { opacity: 1; transform: scale(1) rotate(-8deg); }
         }
 
         header h1 {
-            font-size: 3.8rem;
+            font-size: 4.2rem;
             font-weight: 700;
-            margin-bottom: 12px;
-            text-shadow: 2px 3px 6px rgba(0,0,0,0.15);
+            color: var(--paper);
             letter-spacing: -1px;
+            animation: riseIn 0.8s 0.1s cubic-bezier(0.16,1,0.3,1) both;
         }
 
-        header p {
-            font-size: 1.35rem;
-            opacity: 0.95;
-            max-width: 650px;
-            margin: 0 auto;
-            font-weight: 600;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
-        }
+        header h1 span { color: var(--marigold); }
 
-        section {
-            padding: 50px 20px;
-            max-width: 850px;
-            margin: 0 auto;
-        }
-
-        h2 {
-            color: var(--dark);
-            text-align: center;
-            font-size: 2.3rem;
-            margin-bottom: 35px;
+        header p.tagline {
+            font-size: 1.2rem;
             font-weight: 700;
-            display: flex;
+            color: var(--paper-dim);
+            max-width: 520px;
+            margin: 14px auto 0;
+            animation: riseIn 0.8s 0.25s cubic-bezier(0.16,1,0.3,1) both;
+        }
+
+        @keyframes riseIn { from { opacity:0; transform: translateY(16px);} to {opacity:1; transform: translateY(0);} }
+
+        /* ---------------- Marquee ticker ---------------- */
+        .ticker-wrap {
+            background: var(--marigold);
+            color: var(--ink);
+            overflow: hidden;
+            white-space: nowrap;
+            border-top: 3px solid var(--ink);
+            border-bottom: 3px solid var(--ink);
+        }
+        .ticker {
+            display: inline-flex;
+            animation: ticker 24s linear infinite;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+        .ticker span {
+            padding: 12px 28px;
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            gap: 15px;
+            gap: 10px;
         }
-        
-        h2::before, h2::after {
-            content: '🐾';
-            font-size: 1.6rem;
-            color: var(--secondary);
-            opacity: 0.85;
+        @keyframes ticker {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
         }
 
-        .info-card {
-            background: var(--light);
-            padding: 40px;
-            border-radius: 32px;
-            box-shadow: 0 15px 35px rgba(224, 166, 76, 0.12);
-            margin-bottom: 30px;
-            border: 2px solid rgba(255, 255, 255, 0.8);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        
-        .info-card:hover {
-            transform: translateY(-6px);
-        }
+        /* ---------------- Sections ---------------- */
+        section { padding: 64px 20px; max-width: 860px; margin: 0 auto; }
 
-        .about-text {
-            font-size: 1.15rem;
+        .section-head {
             text-align: center;
-            margin-bottom: 35px;
-            color: var(--dark);
+            margin-bottom: 34px;
+        }
+        .section-head h2 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-top: 6px;
         }
 
-        .info-list {
+        /* Puesto card (market-stall card) */
+        .puesto {
+            background: var(--paper-dim);
+            border: 3px solid var(--ink);
+            border-radius: 26px;
+            padding: 38px;
+            position: relative;
+            box-shadow: 8px 8px 0 var(--ink);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .puesto:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 11px 11px 0 var(--ink);
+        }
+
+        .about-text { font-size: 1.12rem; text-align: center; margin-bottom: 32px; }
+
+        .tag-list {
             list-style: none;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 22px;
         }
 
-        .info-list li {
-            background-color: #FFFDF9;
-            padding: 22px;
-            border-radius: 24px;
+        .tag-list li {
+            background: var(--paper);
+            border: 2px solid var(--ink);
+            border-radius: 16px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
-            border: 1px solid rgba(255, 159, 28, 0.1);
+            gap: 6px;
+            transform: rotate(-1deg);
+            transition: transform 0.25s ease;
         }
+        .tag-list li:nth-child(even) { transform: rotate(1deg); }
+        .tag-list li:hover { transform: rotate(0deg) translateY(-3px); }
 
-        .info-list li strong {
-            color: var(--dark);
+        .tag-list li strong {
+            font-family: 'Fredoka', sans-serif;
+            color: var(--turquoise);
             font-size: 1.05rem;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
         .btn-inline-maps {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
             gap: 8px;
-            background-color: var(--light);
-            color: #4285F4;
-            padding: 10px 18px;
-            border-radius: 16px;
+            background: var(--turquoise);
+            color: var(--paper);
+            padding: 9px 16px;
+            border-radius: 30px;
             text-decoration: none;
-            font-weight: 700;
-            font-size: 0.85rem;
-            margin-top: 15px;
-            border: 2px solid #e8f0fe;
-            transition: all 0.2s ease;
+            font-weight: 800;
+            font-size: 0.82rem;
+            margin-top: 10px;
+            width: fit-content;
+            transition: transform 0.2s ease, background 0.2s ease;
         }
+        .btn-inline-maps:hover { transform: translateY(-2px); background: var(--leaf); }
 
-        .btn-inline-maps:hover {
-            background-color: #e8f0fe;
-            transform: translateY(-2px);
+        /* ---------------- Calendly "ventanita" ---------------- */
+        .awning-wrap { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+        .awning {
+            height: 26px;
+            border-radius: 14px 14px 0 0;
+            background: repeating-linear-gradient(
+                90deg,
+                var(--magenta) 0px, var(--magenta) 26px,
+                var(--paper) 26px, var(--paper) 52px
+            );
+            border: 3px solid var(--ink);
+            border-bottom: none;
         }
-
         .calendly-container {
-            background: var(--light);
-            padding: 20px;
-            border-radius: 32px;
-            box-shadow: 0 15px 35px rgba(224, 166, 76, 0.12);
-            border: 2px solid rgba(255, 255, 255, 0.8);
+            background: var(--paper-dim);
+            border: 3px solid var(--ink);
+            border-top: none;
+            border-radius: 0 0 22px 22px;
+            padding: 16px;
             overflow: hidden;
         }
+        .calendly-inline-widget { border-radius: 14px; overflow: hidden; }
 
-        .calendly-inline-widget {
-            border-radius: 20px;
-            overflow: hidden;
-        }
+        /* ---------------- Promociones / Polaroid carousel ---------------- */
+        #promociones p.sub { text-align: center; margin-top: -18px; margin-bottom: 30px; font-weight: 700; color: var(--violet); }
 
-        #promociones p {
-            text-align: center;
-            color: var(--text-muted);
-            margin-top: -25px;
-            margin-bottom: 30px;
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
-        .carousel-container {
+        .polaroid {
             position: relative;
-            max-width: 380px;
+            max-width: 340px;
             margin: 0 auto;
-            overflow: hidden;
-            border-radius: 32px;
-            box-shadow: 0 20px 40px rgba(224, 166, 76, 0.18);
-            background-color: var(--light);
-            border: 12px solid var(--light);
+            background: var(--paper);
+            border: 3px solid var(--ink);
+            padding: 14px 14px 46px;
+            border-radius: 6px;
+            box-shadow: 8px 8px 0 rgba(38,38,31,0.18);
+            transform: rotate(-2deg);
+        }
+        .washi {
+            position: absolute;
+            top: -16px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-3deg);
+            width: 90px;
+            height: 30px;
+            background: repeating-linear-gradient(45deg, var(--marigold), var(--marigold) 8px, #f6c467 8px, #f6c467 16px);
+            opacity: 0.9;
+            border: 1px solid rgba(38,38,31,0.15);
         }
 
-        .carousel-track {
-            display: flex;
-            transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
-        }
-
-        .carousel-slide {
-            min-width: 100%;
-        }
-
-        .carousel-slide img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-            border-radius: 20px;
-        }
+        .carousel-container { position: relative; overflow: hidden; border-radius: 3px; }
+        .carousel-track { display: flex; transition: transform 0.55s cubic-bezier(0.645,0.045,0.355,1); }
+        .carousel-slide { min-width: 100%; }
+        .carousel-slide img { width: 100%; height: auto; display: block; }
 
         .carousel-arrow {
             position: absolute;
-            top: 50%;
+            top: 45%;
             transform: translateY(-50%);
-            background-color: rgba(255, 255, 255, 0.95);
-            color: var(--primary-dark);
+            background: var(--ink);
+            color: var(--paper);
             border: none;
-            width: 44px;
-            height: 44px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-            transition: all 0.2s ease;
             z-index: 10;
+            transition: background 0.2s ease, transform 0.2s ease;
         }
+        .carousel-arrow:hover { background: var(--magenta); transform: translateY(-50%) scale(1.1); }
+        .prev { left: 10px; }
+        .next { right: 10px; }
 
-        .carousel-arrow:hover {
-            background-color: var(--primary);
-            color: white;
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .prev { left: 15px; }
-        .next { right: 15px; }
-
-        .insta-btn-container {
+        .carousel-caption {
             text-align: center;
-            margin-top: 35px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 0.95rem;
+            padding-top: 10px;
+            color: var(--ink);
         }
 
-        .insta-btn {
+        .carousel-dots { display: flex; justify-content: center; gap: 7px; margin-top: 20px; }
+        .carousel-dots button {
+            width: 9px; height: 9px; border-radius: 50%;
+            border: 2px solid var(--ink); background: transparent;
+            cursor: pointer; padding: 0; transition: all 0.3s ease;
+        }
+        .carousel-dots button.active { background: var(--ink); width: 22px; border-radius: 6px; }
+
+        .insta-btn-container { text-align: center; margin-top: 40px; }
+        .insta-stamp {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background: var(--light);
-            color: #dc2743;
-            padding: 16px 32px;
-            border-radius: 35px;
+            background: var(--paper);
+            color: var(--ink);
+            padding: 15px 30px;
+            border-radius: 40px;
             text-decoration: none;
-            font-weight: 700;
-            box-shadow: 0 8px 25px rgba(224, 166, 76, 0.1);
-            transition: all 0.3s ease;
-            border: 2px solid #fff0f2;
+            font-weight: 800;
+            font-family: 'Fredoka', sans-serif;
+            border: 3px solid var(--ink);
+            box-shadow: 6px 6px 0 var(--magenta);
+            transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s ease;
+        }
+        .insta-stamp:hover {
+            transform: translate(-3px,-3px);
+            box-shadow: 9px 9px 0 var(--magenta);
         }
 
-        .insta-btn:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 25px rgba(220, 39, 67, 0.15);
-            background-color: #fff6f7;
+        /* ---------------- Testimonios / postcards ---------------- */
+        #testimonios-wrap {
+            background: var(--ink);
+            padding: 60px 20px;
+            margin-top: 20px;
         }
+        #testimonios { padding: 0; }
+        #testimonios .section-head h2, #testimonios .eyebrow { color: var(--paper); }
 
-        #testimonios-container {
-            background-color: #FFFDF9;
-            border-radius: 60px;
-            box-shadow: inset 0 4px 20px rgba(224, 166, 76, 0.05);
-            padding: 20px 0;
-            margin: 40px 0;
-        }
-
-        .testimonials {
+        .postcards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 28px;
         }
 
-        .review-card {
-            background: var(--light);
-            padding: 35px 30px;
-            border-radius: 28px;
-            box-shadow: 0 10px 25px rgba(224, 166, 76, 0.06);
-            border: 2px solid rgba(255, 159, 28, 0.08);
+        .postcard {
+            background: var(--paper);
+            border-radius: 10px;
+            padding: 28px 24px;
             position: relative;
-            transition: all 0.3s ease;
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.35);
+            transition: transform 0.3s cubic-bezier(0.175,0.885,0.32,1.275);
         }
-        
-        .review-card:hover {
-            transform: scale(1.03);
-            box-shadow: 0 15px 30px rgba(255, 159, 28, 0.12);
-        }
-        
-        .review-card::before {
-            content: '“';
+        .postcard:nth-child(odd) { transform: rotate(-1.5deg); }
+        .postcard:nth-child(even) { transform: rotate(1.5deg); }
+        .postcard:hover { transform: rotate(0deg) translateY(-5px) scale(1.02); }
+
+        .postcard-stamp {
             position: absolute;
-            top: 5px;
-            left: 20px;
-            font-size: 4.5rem;
-            color: var(--secondary);
-            opacity: 0.15;
-            font-family: serif;
-        }
-
-        .review-stars {
-            color: #ffc107;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-            text-align: center;
-            letter-spacing: 2px;
-        }
-
-        .review-card p {
-            font-size: 0.98rem;
-            color: var(--dark);
-            font-style: italic;
-            text-align: center;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .review-author {
-            font-weight: 700;
-            color: var(--primary-dark);
-            text-align: center;
+            top: 14px;
+            right: 14px;
+            width: 40px;
+            height: 40px;
+            border: 2px dashed var(--turquoise);
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            font-size: 0.92rem;
-        }
-        
-        .review-author::before {
-            content: '🐶';
             font-size: 1.1rem;
+            color: var(--turquoise);
+            transform: rotate(8deg);
         }
 
+        .review-stars { color: var(--marigold); font-size: 1rem; margin-bottom: 12px; letter-spacing: 2px; }
+        .review-stars span { display: inline-block; opacity: 0; }
+        .postcard.is-visible .review-stars span { animation: starPop 0.4s ease both; }
+        .postcard.is-visible .review-stars span:nth-child(1) { animation-delay: .05s; }
+        .postcard.is-visible .review-stars span:nth-child(2) { animation-delay: .15s; }
+        .postcard.is-visible .review-stars span:nth-child(3) { animation-delay: .25s; }
+        .postcard.is-visible .review-stars span:nth-child(4) { animation-delay: .35s; }
+        .postcard.is-visible .review-stars span:nth-child(5) { animation-delay: .45s; }
+        @keyframes starPop { from {opacity:0; transform: scale(.3) rotate(-25deg);} to {opacity:1; transform: scale(1) rotate(0);} }
+
+        .postcard p { font-size: 0.96rem; font-style: italic; margin-bottom: 16px; padding-right: 30px; }
+        .postcard-author { font-family: 'Fredoka', sans-serif; font-weight: 600; color: var(--magenta); font-size: 0.92rem; display: flex; align-items: center; gap: 6px; }
+
+        /* ---------------- Footer ---------------- */
         footer {
             text-align: center;
-            padding: 45px 20px;
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            background-color: var(--light);
-            border-top-left-radius: 40px;
-            border-top-right-radius: 40px;
-            margin-top: 60px;
-            box-shadow: 0 -5px 25px rgba(224, 166, 76, 0.05);
-            font-weight: 600;
+            padding: 20px 20px 30px;
+            font-size: 0.9rem;
+            color: var(--ink);
+            font-weight: 700;
         }
+        footer p + p { font-size: 0.8rem; opacity: 0.65; margin-top: 6px; font-weight: 600; }
 
-        footer p + p {
-            font-size: 0.85rem;
-            margin-top: 8px;
-            opacity: 0.8;
-        }
-
+        /* ---------------- Floating buttons ---------------- */
         .floating-buttons {
             position: fixed;
-            bottom: 30px;
+            bottom: 26px;
             left: 20px;
             right: 20px;
             display: flex;
-            gap: 15px;
+            gap: 14px;
             z-index: 1000;
             max-width: 480px;
             margin: 0 auto;
+            animation: floatIn 0.8s 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
         }
+        @keyframes floatIn { from {opacity:0; transform: translateY(40px);} to {opacity:1; transform: translateY(0);} }
 
         .btn-floating {
             flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            padding: 18px 15px;
-            border-radius: 35px;
+            gap: 9px;
+            padding: 17px 14px;
+            border-radius: 40px;
             text-decoration: none;
-            font-weight: 700;
-            font-size: 1.05rem;
-            box-shadow: 0 10px 25px rgba(224, 166, 76, 0.25);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: none;
+            font-weight: 800;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1rem;
+            border: 3px solid var(--ink);
+            transition: transform 0.25s cubic-bezier(0.175,0.885,0.32,1.275), box-shadow 0.25s ease;
+            box-shadow: 5px 5px 0 var(--ink);
+            position: relative;
+        }
+        .btn-floating:hover { transform: translate(-2px,-2px); box-shadow: 7px 7px 0 var(--ink); }
+
+        .float-wa { background: var(--leaf); color: var(--paper); }
+        .float-maps { background: var(--paper); color: var(--ink); }
+
+        .float-wa::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 40px;
+            box-shadow: 0 0 0 0 rgba(76,140,74,0.5);
+            animation: pulseRing 2.6s ease-out infinite;
+            pointer-events: none;
+        }
+        @keyframes pulseRing {
+            0% { box-shadow: 0 0 0 0 rgba(76,140,74,0.45); }
+            70% { box-shadow: 0 0 0 14px rgba(76,140,74,0); }
+            100% { box-shadow: 0 0 0 0 rgba(76,140,74,0); }
         }
 
-        .btn-floating:hover {
-            transform: translateY(-5px) scale(1.03);
+        @media (max-width: 480px) {
+            header h1 { font-size: 2.7rem; }
+            header p.tagline { font-size: 1rem; }
+            .section-head h2 { font-size: 1.8rem; }
+            .puesto { padding: 26px; }
         }
 
-        .float-wa {
-            background-color: #25d366;
-            color: white;
-            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+                scroll-behavior: auto !important;
+            }
         }
 
-        .float-maps {
-            background-color: var(--light);
-            color: #4285F4;
-            border: 2px solid #e1ecfe;
-        }
-        
-        .btn-floating .icon {
-            font-size: 1.3rem;
+        a:focus-visible, button:focus-visible {
+            outline: 3px solid var(--turquoise);
+            outline-offset: 3px;
         }
     </style>
 </head>
 <body>
 
+    <div class="garland" aria-hidden="true">
+        <div class="garland-row" id="garlandRow"></div>
+    </div>
+
     <header>
-        <div class="rating-badge"><span>★</span> 4.7 (42 Opiniones reales en Google)</div>
-        <h1>BalulaPets</h1>
-        <p>Peluquería de Mascotas, Estética Canina y Accesorios</p>
+        <div class="stamp-badge">
+            <div class="num">4.7</div>
+            <div class="stars">★★★★★</div>
+            <div class="cap">42 reseñas</div>
+        </div>
+        <h1>Balula<span>Pets</span></h1>
+        <p class="tagline">Peluquería de mascotas, estética canina y accesorios en el corazón de Coyoacán</p>
     </header>
 
+    <div class="ticker-wrap" aria-hidden="true">
+        <div class="ticker">
+            <span>🐾 BAÑO Y CORTE</span><span>🦴 ACCESORIOS</span><span>🩺 CONSULTA VETERINARIA</span><span>📅 LUNES A SÁBADO · 10:00 AM</span>
+            <span>🐾 BAÑO Y CORTE</span><span>🦴 ACCESORIOS</span><span>🩺 CONSULTA VETERINARIA</span><span>📅 LUNES A SÁBADO · 10:00 AM</span>
+        </div>
+    </div>
+
     <section id="nosotros">
-        <h2>Conócenos</h2>
-        <div class="info-card">
-            <p class="about-text">En <strong>BalulaPets</strong> nos apasiona el bienestar de tus mejores amigos. Somos especialistas en el cuidado, baño y corte de pelo para perritos y gatitos. Nos caracteriza un trato cariñoso, atento y 100% profesional para que tu mascota se sientan feliz y consentida en cada visita.</p>
-            
-            <ul class="info-list">
+        <div class="section-head reveal">
+            <div class="eyebrow">Nuestro puesto</div>
+            <h2>Conócenos</h2>
+        </div>
+        <div class="puesto reveal">
+            <p class="about-text">En <strong>BalulaPets</strong> nos apasiona el bienestar de tus mejores amigos. Somos especialistas en el cuidado, baño y corte de pelo para perritos y gatitos. Nos caracteriza un trato cariñoso, atento y 100% profesional para que tu mascota se sienta feliz y consentida en cada visita.</p>
+
+            <ul class="tag-list reveal-stagger">
                 <li>
-                    <strong>📍 Ubicación:</strong>
+                    <strong>📍 Ubicación</strong>
                     <span>Callejon Hidalgo, Estudiantes de 1968, Coyoacán, 04620 Ciudad de México, CDMX.</span>
-                    <a href="https://maps.google.com/?q=BalulaPets+Callejon+Hidalgo+Coyoacan" target="_blank" class="btn-inline-maps">
-                        🗺️ Abrir en Google Maps
-                    </a>
+                    <a href="https://maps.google.com/?q=BalulaPets+Callejon+Hidalgo+Coyoacan" target="_blank" class="btn-inline-maps">🗺️ Abrir en Maps</a>
                 </li>
                 <li>
-                    <strong>⏰ Horario:</strong>
+                    <strong>⏰ Horario</strong>
                     <span>Abre a las 10:00 a.m. de Lunes a Sábado.</span>
                 </li>
                 <li>
-                    <strong>📞 Teléfono:</strong>
+                    <strong>📞 Teléfono</strong>
                     <span>55 1027 3837</span>
                 </li>
             </ul>
         </div>
     </section>
 
-    <!-- Sección de Citas Integrada Estéticamente -->
-    <section id="citas">
-        <h2>Agenda tu Cita</h2>
+    <div class="awning-wrap reveal">
+        <div class="awning"></div>
         <div class="calendly-container">
+            <!-- Calendly inline widget begin -->
             <div class="calendly-inline-widget" data-url="https://calendly.com/veterinariabalulapets/30min" style="min-width:320px;height:700px;"></div>
             <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+            <!-- Calendly inline widget end -->
         </div>
-    </section>
+    </div>
 
     <section id="promociones">
-        <h2>Promociones y Novedades</h2>
-        <p>¡Desliza para conocer nuestros últimos descuentos y servicios exclusivos!</p>
-        
-        <div class="carousel-container">
-            <div class="carousel-track" id="carouselTrack">
-                <div class="carousel-slide">
-                    <img src="veterinaria/bano.jpg" alt="Semana de Baños">
-                </div>
-                <div class="carousel-slide">
-                    <img src="veterinaria/primerbano.jpg" alt="Primer Baño de Cachorro">
-                </div>
-                <div class="carousel-slide">
-                    <img src="veterinaria/impermeables.jpg" alt="Accesorios">
-                </div>
-            </div>
-
-            <button class="carousel-arrow prev" onclick="moveSlide(-1)">&#10094;</button>
-            <button class="carousel-arrow next" onclick="moveSlide(1)">&#10095;</button>
+        <div class="section-head reveal">
+            <div class="eyebrow">Recién colgado en el tendedero</div>
+            <h2>Promociones y Novedades</h2>
         </div>
+        <p class="sub">¡Desliza para conocer nuestros últimos descuentos y servicios exclusivos!</p>
 
-        <div class="insta-btn-container">
-            <a href="https://instagram.com/balulapets" target="_blank" class="insta-btn">
-                📸 Ver más en Instagram
-            </a>
+        <div class="polaroid reveal">
+            <div class="washi"></div>
+            <div class="carousel-container">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="carousel-slide">
+                        <img src="bano.jpg" alt="Semana de Baños" onerror="this.src='https://via.placeholder.com/400x500/0F93A0/ffffff?text=Mimos+y+Baños'">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="primerbano.jpg" alt="Primer Baño de Cachorro" onerror="this.src='https://via.placeholder.com/400x500/E8447A/ffffff?text=Primer+Baño+Cachorro'">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=80&w=600" alt="Vacunas">
+                    </div>
+                </div>
+                <button class="carousel-arrow prev" onclick="moveSlide(-1)" aria-label="Anterior">&#10094;</button>
+                <button class="carousel-arrow next" onclick="moveSlide(1)" aria-label="Siguiente">&#10095;</button>
+            </div>
+            <div class="carousel-caption">¡Consiéntelo esta semana! 🐶</div>
+        </div>
+        <div class="carousel-dots" id="carouselDots"></div>
+
+        <div class="insta-btn-container reveal">
+            <a href="https://instagram.com/balulapets" target="_blank" class="insta-stamp">📸 Ver más en Instagram</a>
         </div>
     </section>
 
-    <div id="testimonios-container">
+    <div id="testimonios-wrap">
         <section id="testimonios">
-            <h2>Lo que dicen nuestros clientes</h2>
-            <div class="testimonials">
-                <div class="review-card">
-                    <div class="review-stars">⭐⭐⭐⭐•</div>
+            <div class="section-head reveal">
+                <div class="eyebrow" style="color: var(--marigold);">Voces del barrio</div>
+                <h2>Lo que dicen nuestros clientes</h2>
+            </div>
+            <div class="postcards reveal-stagger">
+
+                <div class="postcard reveal">
+                    <div class="postcard-stamp">🐾</div>
+                    <div class="review-stars"><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span></div>
                     <p>"Excelente servicio, son muy cuidadosos con el cuidado de cada mascota, la atención de la Dra es de toda una profesional, me encanta... son cariñosos, atentos y tienen excelente ropa y accesorios también."</p>
-                    <div class="review-author">Itzel Barajas</div>
+                    <div class="postcard-author">🐶 Itzel Barajas</div>
                 </div>
 
-                <div class="review-card">
-                    <div class="review-stars">⭐⭐⭐⭐•</div>
+                <div class="postcard reveal">
+                    <div class="postcard-stamp">🐾</div>
+                    <div class="review-stars"><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span></div>
                     <p>"Es la primera vez que llevo a mi bebé y quedé muy contento con el servicio pero sobre todo con el trato desde que llegamos hasta que me entregaron a Sally. Recomiendo ampliamente."</p>
-                    <div class="review-author">Milton Rivera García</div>
+                    <div class="postcard-author">🐶 Milton Rivera García</div>
                 </div>
 
-                <div class="review-card">
-                    <div class="review-stars">⭐⭐⭐⭐•</div>
+                <div class="postcard reveal">
+                    <div class="postcard-stamp">🐾</div>
+                    <div class="review-stars"><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span></div>
                     <p>"Llevo varios años atendiendo a mi cachorro de maravilla, lo lleve a otro lado y ya querían dormir a mi Junior por una enfermedad... puedo decir que es una excelente veterinaria."</p>
-                    <div class="review-author">Juan Carrillo Lule</div>
+                    <div class="postcard-author">🐶 Juan Carrillo Lule</div>
                 </div>
+
             </div>
         </section>
     </div>
 
+    <div class="garland" aria-hidden="true">
+        <div class="garland-row" id="garlandRowFooter"></div>
+    </div>
+
     <footer>
         <p>&copy; 2026 BalulaPets. Todos los derechos reservados.</p>
-        <p>Diseñado con ❤️ para las mascotas consentidas de Coyoacán.</p>
+        <p>Hecho con cariño para las mascotas consentidas de Coyoacán.</p>
     </footer>
 
     <div class="floating-buttons">
         <a href="https://wa.me/525510273837?text=Hola%20BalulaPets,%20quisiera%20agendar%20una%20cita%20para%20mi%20mascota." target="_blank" class="btn-floating float-wa">
-            <span class="icon">💬</span> WhatsApp
+            <span>💬</span> WhatsApp
         </a>
         <a href="https://maps.google.com/?q=BalulaPets+Callejon+Hidalgo+Coyoacan" target="_blank" class="btn-floating float-maps">
-            <span class="icon">📍</span> Cómo Llegar
+            <span>📍</span> Cómo Llegar
         </a>
     </div>
 
     <script>
+        // ---------- Build paper-cut garland ----------
+        const icons = ['🐾', '🦴', '🐶', '❤️', '🐱', '✂️'];
+        function buildGarland(id, count) {
+            const row = document.getElementById(id);
+            for (let i = 0; i < count; i++) {
+                const flag = document.createElement('div');
+                flag.className = 'flag';
+                flag.style.animationDelay = (i * 0.12) + 's';
+                flag.textContent = icons[i % icons.length];
+                row.appendChild(flag);
+            }
+        }
+        buildGarland('garlandRow', 22);
+        buildGarland('garlandRowFooter', 22);
+
+        // ---------- Carousel ----------
         let currentSlide = 0;
         const track = document.getElementById('carouselTrack');
         const slides = document.querySelectorAll('.carousel-slide');
         const totalSlides = slides.length;
+        const dotsContainer = document.getElementById('carouselDots');
         let autoPlayInterval;
+
+        slides.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.setAttribute('aria-label', 'Ir a la diapositiva ' + (i + 1));
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                currentSlide = i;
+                updateCarousel();
+                resetAutoPlay();
+            });
+            dotsContainer.appendChild(dot);
+        });
+        const dots = dotsContainer.querySelectorAll('button');
 
         function updateCarousel() {
             track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === currentSlide));
         }
 
         function moveSlide(direction) {
             currentSlide += direction;
-
-            if (currentSlide >= totalSlides) {
-                currentSlide = 0;
-            }
-            if (currentSlide < 0) {
-                currentSlide = totalSlides - 1;
-            }
+            if (currentSlide >= totalSlides) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = totalSlides - 1;
             updateCarousel();
             resetAutoPlay();
         }
 
-        function startAutoPlay() {
-            autoPlayInterval = setInterval(() => {
-                moveSlide(1);
-            }, 5000);
-        }
-
-        function resetAutoPlay() {
-            clearInterval(autoPlayInterval);
-            startAutoPlay();
-        }
-
+        function startAutoPlay() { autoPlayInterval = setInterval(() => moveSlide(1), 5000); }
+        function resetAutoPlay() { clearInterval(autoPlayInterval); startAutoPlay(); }
         startAutoPlay();
-        
-        let touchstartX = 0;
-        let touchendX = 0;
+
+        let touchstartX = 0, touchendX = 0;
         const slider = document.querySelector('.carousel-container');
-
-        slider.addEventListener('touchstart', e => {
-            touchstartX = e.changedTouches[0].screenX;
-        });
-
-        slider.addEventListener('touchend', e => {
-            touchendX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-
+        slider.addEventListener('touchstart', e => { touchstartX = e.changedTouches[0].screenX; });
+        slider.addEventListener('touchend', e => { touchendX = e.changedTouches[0].screenX; handleSwipe(); });
         function handleSwipe() {
             if (touchendX < touchstartX - 50) moveSlide(1);
             if (touchendX > touchstartX + 50) moveSlide(-1);
         }
+
+        // ---------- Scroll reveal ----------
+        const revealEls = document.querySelectorAll('.reveal, .reveal-stagger, .postcard');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        revealEls.forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
